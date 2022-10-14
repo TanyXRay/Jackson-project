@@ -1,8 +1,13 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -117,6 +122,18 @@ public class Basket implements Serializable {
         parent.set("prices", arrayNodePrice);
 
         objectMapper.writeValue(jsonFile, parent);
+    }
+
+    // метод - пример парсинга c использованием библиотеки JSON Simple
+    public static void getParserJson(File jsonFile) throws IOException, ParseException {
+        FileReader fileReader = new FileReader(jsonFile);
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(fileReader);
+        JSONObject jsonObject = (JSONObject) obj;
+
+        JSONArray productNames = (JSONArray) jsonObject.get("productsNames");
+        JSONArray productCount = (JSONArray) jsonObject.get("productsCount");
+        JSONArray prices = (JSONArray) jsonObject.get("prices");
     }
 
     /**

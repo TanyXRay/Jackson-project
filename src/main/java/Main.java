@@ -1,10 +1,12 @@
+import org.json.simple.parser.ParseException;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         String[] products = {"Хлеб", "Молоко", "Яблоки"};
         int[] prices = {35, 87, 109};
 
